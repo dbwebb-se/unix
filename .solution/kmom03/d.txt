@@ -1,0 +1,4 @@
+23:18 -!- Sylvanas [~Jane@shagbark.ninja] has quit [Quit: leaving]
+23:19 -!- Sylvanas [~Jane@shagbark.ninja] has joined #db-o-webb
+23:19 -!- mode/#db-o-webb [+o Sylvanas] by chan
+--- Log closed Mon Jun 29 08:00 2015 

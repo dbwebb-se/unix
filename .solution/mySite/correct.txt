@@ -1,0 +1,17 @@
+mySite/
+├── [-rw-r--r--]  .htaccess
+├── [-rw-r--r--]  correct.txt
+├── [-rw-r--r--]  genie.html
+├── [drwxr-xr-x]  img
+│   ├── [-rw-r--r--]  genie.jpg
+│   ├── [-rw-r--r--]  marvin.jpg
+│   └── [-rw-r--r--]  space.jpg
+├── [-rw-r--r--]  index.html
+├── [drwxr-xr-x]  js
+│   └── [-rw-r--r--]  main.js
+├── [-rw-r--r--]  marvin.html
+├── [-rw-r--r--]  space.html
+└── [drwxr-xr-x]  style
+    └── [-rw-r--r--]  style.css
+
+3 directories, 11 files

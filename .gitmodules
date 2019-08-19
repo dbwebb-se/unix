@@ -1,0 +1,3 @@
+[submodule "solution"]
+	path = .solution
+	url = git@bitbucket.org:mosbth/linux-solutions.git

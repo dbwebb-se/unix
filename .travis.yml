@@ -1,0 +1,59 @@
+language: node_js
+
+node_js:
+    - "node"
+    - "8"
+    - "6"
+    #- "4"
+    #- "0.12"
+    #- "0.11"
+    #- "0.10"
+
+
+
+sudo: false
+
+
+
+git:
+    submodules: false
+
+
+
+# addons:
+#     apt:
+#         sources:
+#         - debian-sid    # Grab ShellCheck from the Debian repo
+#         packages:
+#         - shellcheck
+
+
+
+# env:
+#     - TEST_DIR=example/nodejs/
+
+
+
+before_script:
+    # Prepare for automated tests
+    - make install
+
+
+
+script:
+    # Run tests
+    - make check test
+
+
+
+notifications:
+    irc: "irc.freenode.org#dbwebb"
+
+    webhooks:
+        urls:
+            - https://webhooks.gitter.im/e/eeddc70678354af6584f
+
+        # options: [always|never|change] default: always
+        on_success: change
+        on_failure: always
+        on_start: never

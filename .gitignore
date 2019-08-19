@@ -1,0 +1,9 @@
+me/
+bin/
+build/
+node_modules
+package-lock.json
+inspect.log
+inspect.output
+# Mac
+.DS_Store

@@ -1,0 +1,76 @@
+# --------------------------------------------------------------------------
+#
+# Init
+#
+dbwebb init-me
+
+
+
+# --------------------------------------------------------------------------
+#
+# Kmom01
+#
+
+
+#
+# vhost
+# https://dbwebb.se/uppgift/installera-debian-som-server
+#
+touch me/kmom01/vhost/log.txt
+touch me/kmom01/vhost/me.linux.se.conf
+touch me/kmom01/vhost/dump.png
+
+
+
+# --------------------------------------------------------------------------
+#
+# Kmom02
+#
+
+# bash1
+cd me/kmom02 && dbwebb recreate bash1
+cd me/kmom02/bash1 && ./answer.bash; [[ $? = 42 ]]
+dbwebb validate bash1
+# bash2
+cd me/kmom02 && dbwebb recreate bash2
+cd me/kmom02/bash2 && ./answer.bash; [[ $? = 42 ]]
+dbwebb validate bash2
+
+
+# script
+# https://dbwebb.se/uppgift/mina-forsta-bash-script
+test -d me/kmom02/script
+
+
+# commands
+# https://dbwebb.se/uppgift/ett-bash-script-med-options-command-arguments
+cp example/bash/cli-with-options/bash-cli me/kmom02/commands/commands
+chmod 755 me/kmom02/commands/commands
+
+
+
+# --------------------------------------------------------------------------
+#
+# Kmom04
+#
+
+#
+# maze
+# https://dbwebb.se/uppgift/los-mazen-med-din-mazerunner-i-bash
+#
+touch me/kmom04/maze/mazerunner.bash
+dbwebb validate maze
+
+
+
+# --------------------------------------------------------------------------
+#
+# Inspect
+#
+#make dbwebb-inspect options="--yes --no-validate" what=kmom01
+#make dbwebb-inspect options="--yes --no-validate" what=kmom02
+#make dbwebb-inspect options="--yes --no-validate" what=kmom03
+#make dbwebb-inspect options="--yes --no-validate" what=kmom04
+#make dbwebb-inspect options="--yes --no-validate" what=kmom05
+#make dbwebb-inspect options="--yes --no-validate" what=kmom06
+#make dbwebb-inspect options="--yes --no-validate" what=kmom10

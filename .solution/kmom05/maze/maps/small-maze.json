@@ -1,0 +1,32 @@
+{
+    "0": {
+        "roomid": 0,
+        "description": "Entry",
+        "directions": {
+            "west": "-",
+            "east": "-",
+            "south": 1,
+            "north": "-"
+        }
+    },
+    "1": {
+        "roomid": 1,
+        "description": "Room 1",
+        "directions": {
+            "west": "-",
+            "east": "-",
+            "south": 2,
+            "north": "-"
+        }
+    },
+    "2": {
+        "roomid": 2,
+	    "description": "You found the exit",
+	    "directions": {
+            "west": "-",
+            "east": "-",
+            "south": "-",
+            "north": "-"
+        }
+	}
+}

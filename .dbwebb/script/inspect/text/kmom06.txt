@@ -1,0 +1,5 @@
+Då kör vi kmom06!
+
+I kursmomentet skulle det finnas en fil där vi kan spela lokalt, en server samt en klient. Jag har spelat ditt Gomoku lokalt och med klient/server och det fungerar fint och enligt kraven. Kom ihåg att en hel del av det som momentet har gått igenom återkommer i projektet.
+
+Bra genomfört moment och lycka till med projektet!

@@ -1,0 +1,7 @@
+version: "3"
+services:
+    course-cli:
+        image: dbwebb/courserepo:course-cli
+        volumes:
+            - .:/home/dbwebb/repo
+        ports: [ "10042:80" ]
