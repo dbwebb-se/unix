@@ -51,6 +51,18 @@ chmod 755 me/kmom02/commands/commands
 
 # --------------------------------------------------------------------------
 #
+# Kmom03
+#
+
+# sed1
+cd me/kmom03 && dbwebb recreate sed1
+cd me/kmom03/sed1 && ./answer.bash; [[ $? = 42 ]]
+dbwebb validate sed1
+
+
+
+# --------------------------------------------------------------------------
+#
 # Kmom04
 #
 
@@ -60,6 +72,16 @@ chmod 755 me/kmom02/commands/commands
 #
 touch me/kmom04/maze/mazerunner.bash
 dbwebb validate maze
+
+
+
+# --------------------------------------------------------------------------
+#
+# report
+#
+
+cp -r example/report/ me/report/
+dbwebb validate report
 
 
 
