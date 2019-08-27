@@ -1,13 +1,7 @@
-Då ska vi se vad kmom02 resulterade i...
+Kursmoment 02 klart! Delarna innefattar en config-fil som styr din virtual host, en logg-fil samt en skärmdump.
 
-Som vanligt kollar jag igenom din inlämning med "dbwebb inspect" så att allt ligger på plats och validerar. I detta kmom introducerade vi JavaScript-validering.
-
-Jag läste igenom din redovisningstext så att allt såg bra ut. I detta kmom var jag extra intresserad av hur du uppfattade introduktionen av JavaScript, Node.js.
-
-Jag installerade din miljö för Node.js från "me/package.json" och testkörde dina program i "me/terminal1". Jag vill se att de kan koppla sig mot databasen i guiden och att de får ut rätt resultat. Jag vill även se att du strukturerat koden i minst en extern modul.
+Jag kune hitta alla delar och de har relevant innehåll.
 
 Allt jag kollade på såg bra ut. Kör på.
 
 $TEACHER_SIGNATURE
-
-PS. Glöm inte att du kan få svar på alla frågor och funderingar om du ställer dem i forumet.

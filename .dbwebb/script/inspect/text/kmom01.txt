@@ -1,9 +1,7 @@
-Välkommen till kursen databas.
+Jag hoppas installationen av VirtualBox gick bra och att du fått igång Guest Additions. Jag har även tittat på din logg-fil och den innehåller de delarna som är tänkt.
 
-Jag kollade snabbt igenom din inlämning och utskrifterna från "dbwebb inspect" så att alla saker ligger på rätt plats och att filerna validerar.
+Jag kollade igenom din redovisningstext och den är välskriven och reflekterande..
 
-Jag kollade igenom din redovisningstext så att allt såg bra ut.
-
-Allt är väl, så här långt. Kör på.
+Allt är väl, så här långt. Kör på!
 
 $TEACHER_SIGNATURE

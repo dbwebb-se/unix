@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-VERSION="v1.4.2 (2019-05-03)"
+VERSION="v1.0.1 (2019-02-03)"
 
 # Include ./functions.bash
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
@@ -12,8 +12,7 @@ DBWEBB_GUI_CONFIG_FILE="$HOME/.dbwebb/gui_config.bash"
 # shellcheck source=$HOME/.dbwebb.gui_config.bash
 [[ -f $DBWEBB_GUI_CONFIG_FILE ]] && source "$DBWEBB_GUI_CONFIG_FILE"
 
-# Save INSPECT_PID to be able to kill it
-DBWEBB_INSPECT_PID=
+
 
 # Preconditions
 hash dialog 2>/dev/null \
@@ -29,12 +28,10 @@ hash tree 2>/dev/null \
 # shellcheck source=./../../../.dbwebb.course
 source "$DIR/../../../.dbwebb.course"
 COURSE="$DBW_COURSE"
-LOGFILE="log-gui-main.ansi"
-LOGFILE_INSPECT="log-gui-inspect.ansi"
+LOGFILE="inspect.output"
 BACKTITLE="dbwebb/$COURSE"
 TITLE="Work with kmoms"
 REDOVISA_HTTP_PREFIX="http://www.student.bth.se"
-REDOVISA_HTTP_POSTFIX="me/redovisa"
 
 # OS specific default settings
 BROWSER="firefox"
@@ -66,10 +63,6 @@ TEACHER_SIGNATURE=${DBWEBB_TEACHER_SIGNATURE:-"// XXX"}
 dockerContainer="mysql"
 
 
-# Remember last menu choice (or set defaults)
-mainMenuSelected=1
-
-
 
 #
 #
@@ -90,9 +83,16 @@ Make sure you have a initiated and updated course repo with development utilitie
  dbwebb init-me # Will be overwritten on download
  make install # For local inspects
 
-The output from inspect is written to files, keep it open in your editor (and use package language-ansi-styles to get colors):
- log-gui-main.ansi (Main output file, excluding inspect)
- log-gui-inspect.ansi (Inspect output file)
+You need to start and stop docker before using docker within a docker container.
+
+From the root of the cours repo, start the container, if needed. You can also use the docker menu.
+ docker-compose up -d [$dockerContainer]
+ docker-compose start [$dockerContainer]
+ docker-compose stop
+ docker-compose run [$dockerContainer] bash
+
+The output from inspect is written to a file, keep it open in your editor (and use package language-ansi-styles to get colors):
+ inspect.output
 
 Review the admin menu for customizing and creating a configuration file where you can store customized settings.
  $DBWEBB_GUI_CONFIG_FILE
@@ -167,7 +167,6 @@ gui-main-menu()
     dialog \
         --backtitle "$BACKTITLE" \
         --title "$TITLE" \
-        --default-item "$mainMenuSelected" \
         --menu "Main menu" \
         24 80 \
         20 \
@@ -225,7 +224,6 @@ gui-database-menu()
         "1" "Load student skolan/reset_part1.bash into docker mysql" \
         "2" "Load student skolan/reset_part2.bash into docker mysql" \
         "3" "Load student skolan/reset_part3.bash into docker mysql" \
-        "4" "Load student skolan/skolan.sql into docker mysql" \
         "b" "Back" \
         3>&1 1>&2 2>&3 3>&-
 }
@@ -285,7 +283,7 @@ gui-read-acronym()
     dialog \
         --backtitle "$BACKTITLE" \
         --title "$TITLE" \
-        --inputbox "Select student acronym (ctrl-u to clear)" \
+        --inputbox "Select student acronym" \
         24 80 \
         "$1" \
         3>&1 1>&2 2>&3 3>&-
@@ -336,52 +334,22 @@ main-admin-menu()
 
 
 #
-# Drop and create the databases
-#
-# Arg 1: The file[.sql] to load
-# Arg 2: Optional username
-# Arg 3: Optional password
-# Arg 4: Optional database
-#
-runSqlScript()
-{
-    local sql="$1"
-    local user=${2:-root}
-    local password=${3:-}
-    local host="-hmysql"
-    local database=${4:-}
-
-    if [[ ! -z $password ]]; then
-        password="-p$password"
-    fi
-
-    if [[ ! -f "$sql" ]]; then
-        printf "%s: The SQL file '%s' does not exists.\n" "${FUNCNAME[0]}" "$sql"
-        exit 1
-    fi
-
-    printf "%s\n" "$sql"
-    cat "$sql" \
-        | make docker-run what="mysql --table $host -u$user $password $database"
-}
-
-
-
-#
 #
 #
 main-database-menu()
 {
     local output
-    local path
 
     while true; do
         output=$( gui-database-menu )
         case $output in
             u)
-                runSqlScript "example/sql/create-user-dbwebb.sql"
-                runSqlScript "example/sql/create-user-user.sql" "dbwebb"
-                runSqlScript "example/sql/check-users.sql" "dbwebb"
+                echo "example/sql/create-user-dbwebb.sql"
+                cat example/sql/create-user-dbwebb.sql | make docker-run container="mysql-client" what="mysql -hmysql -uroot -ppassword"
+                echo "example/sql/create-user-user.sql"
+                cat example/sql/create-user-user.sql | make docker-run container="mysql-client" what="mysql -hmysql -udbwebb -ppassword"
+                echo "example/sql/check-users.sql"
+                cat example/sql/check-users.sql | make docker-run container="mysql-client" what="mysql -hmysql -uuser -ppass --table"
                 pressEnterToContinue
                 ;;
             l)
@@ -389,33 +357,21 @@ main-database-menu()
                 [[ -z $kmom ]] && continue
 
                 for file in $DIR/kmom.d/$kmom/dump_*.sql; do
-                    runSqlScript "$file" "dbwebb"
+                    echo "$file"
+                    cat "$file" | make docker-run container="mysql-client" what="mysql -hmysql -udbwebb -ppassword"
                 done
                 pressEnterToContinue
                 ;;
             1)
-                runSqlScript "example/sql/inspect/setup_skolan.sql" "dbwebb"
-                make docker-run what="bash me/skolan/reset_part1.bash"
+                make docker-run container="mysql-client" what="bash me/skolan/reset_part1.bash"
                 pressEnterToContinue
                 ;;
             2)
-                runSqlScript "example/sql/inspect/setup_skolan.sql" "dbwebb"
-                make docker-run what="bash me/skolan/reset_part2.bash"
+                make docker-run container="mysql-client" what="bash me/skolan/reset_part2.bash"
                 pressEnterToContinue
                 ;;
             3)
-                runSqlScript "example/sql/inspect/setup_skolan.sql" "dbwebb"
-                make docker-run what="bash me/skolan/reset_part3.bash"
-                pressEnterToContinue
-                ;;
-            4)
-                path="me/skolan/skolan.sql"
-                if [[ -f "$path" ]]; then
-                    runSqlScript "example/sql/inspect/setup_skolan.sql" "dbwebb"
-                    runSqlScript "$path" "dbwebb" "" "skolan"
-                else
-                    printf "The file '%s' does not exists.\n" "$path"
-                fi
+                make docker-run container="mysql-client" what="bash me/skolan/reset_part3.bash"
                 pressEnterToContinue
                 ;;
             b|"")
@@ -466,20 +422,6 @@ main-docker-menu()
 
 
 #
-# Write a header with descriptive text.
-#
-header()
-{
-    printf "\n\n\033[0;30;42m>>> ======= %-25s =======\033[0m\n\n" "$1"
-
-    if [[ $2 ]]; then
-        printf "%s\n" "$2"
-    fi
-}
-
-
-
-#
 # Echo feedback text  to log and add to clipboard
 #
 initLogfile()
@@ -487,33 +429,22 @@ initLogfile()
     local acronym="$1"
     local what="$2"
 
-    header "GUI Inspect" | tee "$LOGFILE"
-
-    printf "%s\n%s %s\n%s\nInspect GUI %s\n" "$( date )" "$acronym" "$kmom" "$what" "$VERSION" | tee -a "$LOGFILE"
+    printf "Inspect GUI %s\n%s\n%s\n%s\n" "$VERSION" "$what" "$( date )" "$acronym" > "$LOGFILE"
 }
 
 
 
 #
-# Echo feedback text to log and add to clipboard
+# Echo feedback text  to log and add to clipboard
 #
 feedback()
 {
     local kmom="$1"
     local output
 
-    header "Feedback" | tee -a "$LOGFILE"
-
     output=$( eval echo "\"$( cat "$DIR/text/$kmom.txt" )"\" )
-    #output=$(< "$DIR/text/$kmom.txt" )
     printf "\n%s\n\n" "$output" | tee -a "$LOGFILE"
     printf "%s" "$output" | eval $TO_CLIPBOARD
-
-    if [[ -f "$DIR/text/${kmom}_extra.txt" ]]; then
-        #output=$( eval echo "\"$( cat "$DIR/text/${kmom}_extra.txt" )"\" )
-        output=$(< "$DIR/text/${kmom}_extra.txt" )
-        printf "\n\033[32;01m---> Vanliga feedbacksvar\033[0m\n\n%s\n\n" "$output" | tee -a "$LOGFILE"
-    fi
 }
 
 
@@ -525,20 +456,14 @@ downloadPotato()
 {
     local acronym="$1"
 
-    header "Download (and potato)" "Doing a silent download, potatoe if needed." | tee -a "$LOGFILE"
-
-    if ! dbwebb --force --yes download me $acronym > /dev/null; then
-        printf "\n\033[32;01m---> Doing a Potato\033[0m\n\033[0;30;43mACTION NEEDED...\033[0m\n" | tee -a "$LOGFILE"
+    if ! dbwebb --force --yes download me $acronym; then
         potatoe $acronym
-        if ! dbwebb --force --yes --silent download me $acronym; then
-            printf "\n\033[0;30;41mFAILED!\033[0m Doing a full potatoe, as a last resort...\n" | tee -a "$LOGFILE"
-            potatoe $acronym "false"
-            if ! dbwebb --force --yes --silent download me $acronym; then
-                printf "\n\033[0;30;41mFAILED!\033[0m Doing a full potatoe, as a last resort...\n" | tee -a "$LOGFILE"
-                exit 1
-            fi
+        if ! dbwebb --force --yes download me $acronym; then
+            echo 1
         fi
     fi
+
+    echo 0
 }
 
 
@@ -550,9 +475,9 @@ openRedovisaInBrowser()
 {
     local acronym="$1"
 
-    printf "$REDOVISA_HTTP_PREFIX/~$acronym/dbwebb-kurser/$COURSE/$REDOVISA_HTTP_POSTFIX\n" 2>&1 | tee -a "$LOGFILE"
+    printf "$REDOVISA_HTTP_PREFIX/~$acronym/dbwebb-kurser/$COURSE/me/redovisa\n" >> "$LOGFILE"
 
-    eval "$BROWSER" "$REDOVISA_HTTP_PREFIX/~$acronym/dbwebb-kurser/$COURSE/$REDOVISA_HTTP_POSTFIX" &
+    eval "$BROWSER" "$REDOVISA_HTTP_PREFIX/~$acronym/dbwebb-kurser/$COURSE/me/redovisa"
 }
 
 
@@ -564,11 +489,7 @@ makeInspectLocal()
 {
     local kmom="$1"
 
-    #header "dbwebb inspect" "Do dbwebb inspect in the background and write output to logfile '$LOGFILE_INSPECT'." | tee -a "$LOGFILE"
-    header "dbwebb inspect" | tee -a "$LOGFILE"
-
-    #(make inspect options="--yes" what="$kmom" 2>&1 > "$LOGFILE_INSPECT" &)
-    make inspect options="--yes" what="$kmom" 2>&1 | tee -a "$LOGFILE"
+    make inspect options="--yes" what="$kmom" | tee -a "$LOGFILE"
 }
 
 
@@ -580,19 +501,7 @@ makeInspectDocker()
 {
     local kmom="$1"
 
-    header "dbwebb inspect" "Do dbwebb inspect in the background and write output to logfile '$LOGFILE_INSPECT'." | tee -a "$LOGFILE"
-    #header "dbwebb inspect" | tee -a "$LOGFILE"
-
-    if [[ ! -z $DBWEBB_INSPECT_PID ]]; then
-        echo "Killing $DBWEBB_INSPECT_PID" | tee "$LOGFILE_INSPECT"
-        kill -9 $DBWEBB_INSPECT_PID
-        DBWEBB_INSPECT_PID=
-    fi
-
-    setsid make docker-run what="make inspect what=$kmom options='--yes'" > "$LOGFILE_INSPECT" 2>&1 &
-    DBWEBB_INSPECT_PID="$!"
-
-    #make docker-run what="make inspect what=$kmom options='--yes'" 2>&1  | tee -a "$LOGFILE"
+    make docker-run container="course-$COURSE" what="make inspect what=$kmom options='--yes'" | tee -a "$LOGFILE"
 }
 
 
@@ -604,46 +513,9 @@ makeDockerRunExtras()
 {
     local kmom="$1"
 
-    header "Docker Run Extra" | tee -a "$LOGFILE"
-
-    echo 'make docker-run-server container="course-cli" what="bash .dbwebb/script/inspect/kmom.d/run.bash $kmom"' | tee -a "$LOGFILE"
-    make docker-run-server container="course-cli" what="bash .dbwebb/script/inspect/kmom.d/run.bash $kmom" 2>&1 | tee -a "$LOGFILE"
-}
-
-
-
-#
-# Run extra testscripts that are executed before inspect.
-#
-runPreExtras()
-{
-    local kmom="$1"
-    local path=".dbwebb/script/inspect/kmom.d/$kmom/pre.bash"
-
-    header "Docker Run Extra (pre)" | tee -a "$LOGFILE"
-
-    if [[ -f "$path" ]]; then
-        # shellcheck source=.dbwebb/script/inspect/kmom.d/$kmom/pre.bash
-        source "$path" 2>&1 | tee -a "$LOGFILE"
-    fi
-}
-
-
-
-#
-# Run extra testscripts that are executed after inspect.
-#
-runPostExtras()
-{
-    local kmom="$1"
-    local path=".dbwebb/script/inspect/kmom.d/$kmom/post.bash"
-
-    header "Docker Run Extra (post)" | tee -a "$LOGFILE"
-
-    if [[ -f "$path" ]]; then
-        # shellcheck source=.dbwebb/script/inspect/kmom.d/$kmom/post.bash
-        source "$path" 2>&1 | tee -a "$LOGFILE"
-    fi
+    # Run extra testscripts
+    echo 'make docker-run container="course-cli" what="bash .dbwebb/script/inspect/kmom.d/run.bash $kmom"' | tee -a "$LOGFILE"
+    make docker-run container="course-cli" what="bash .dbwebb/script/inspect/kmom.d/run.bash $kmom" | tee -a "$LOGFILE"
 }
 
 
@@ -653,12 +525,14 @@ runPostExtras()
 #
 main()
 {
+    local output
     local acronym=
 
     gui-firstpage
+    gui-show-configuration
     while true; do
-        mainMenuSelected=$( gui-main-menu )
-        case $mainMenuSelected in
+        output=$( gui-main-menu )
+        case $output in
             a)
                 main-admin-menu
                 ;;
@@ -677,10 +551,8 @@ main()
 
                 initLogfile "$acronym" "local"
                 openRedovisaInBrowser "$acronym"
-                feedback "$kmom"
-                runPreExtras "$kmom"
                 makeInspectLocal "$kmom"
-                runPostExtras "$kmom"
+                feedback "$kmom"
                 pressEnterToContinue
                 ;;
             3)
@@ -692,14 +564,12 @@ main()
 
                 initLogfile "$acronym" "download, local"
                 openRedovisaInBrowser "$acronym"
-                feedback "$kmom"
                 if ! downloadPotato "$acronym"; then
                     pressEnterToContinue;
                     continue
                 fi
-                runPreExtras "$kmom"
                 makeInspectLocal "$kmom"
-                runPostExtras "$kmom"
+                feedback "$kmom"
                 pressEnterToContinue
                 ;;
             2)
@@ -711,11 +581,9 @@ main()
 
                 initLogfile "$acronym" "docker"
                 openRedovisaInBrowser "$acronym"
-                feedback "$kmom"
-                runPreExtras "$kmom"
                 makeInspectDocker "$kmom"
+                feedback "$kmom"
                 makeDockerRunExtras "$kmom"
-                runPostExtras "$kmom"
                 pressEnterToContinue
                 ;;
             1)
@@ -727,15 +595,13 @@ main()
 
                 initLogfile "$acronym" "download, docker"
                 openRedovisaInBrowser "$acronym"
-                feedback "$kmom"
                 if ! downloadPotato "$acronym"; then
                     pressEnterToContinue;
                     continue
                 fi
-                runPreExtras "$kmom"
-                makeInspectDocker "$kmom"
+                # makeInspectDocker "$kmom"
+                feedback "$kmom"
                 makeDockerRunExtras "$kmom"
-                runPostExtras "$kmom"
                 pressEnterToContinue
                 ;;
             d)
