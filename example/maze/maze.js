@@ -9,7 +9,7 @@ const fs = require("fs");
 const http = require("http");
 
 // A better router to create a handler for all routes
-const Router = require("../router/router");
+const Router = require("./router.js");
 //const Router = require("./router");
 
 var router = new Router();
