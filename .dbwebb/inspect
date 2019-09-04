@@ -23,7 +23,7 @@ linux()
 #
 linuxlast()
 {
-    inspectMe "me/redovisa" "me.html" "redovisning.html" "" "redovisa"
+    inspectMe "me/report" "me.html" "report.html" "" "report"
 }
 
 

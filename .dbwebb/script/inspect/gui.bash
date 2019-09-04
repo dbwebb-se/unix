@@ -34,7 +34,7 @@ LOGFILE_INSPECT="log-gui-inspect.ansi"
 BACKTITLE="dbwebb/$COURSE"
 TITLE="Work with kmoms"
 REDOVISA_HTTP_PREFIX="http://www.student.bth.se"
-REDOVISA_HTTP_POSTFIX="me/redovisa"
+REDOVISA_HTTP_POSTFIX="me/report"
 
 # OS specific default settings
 BROWSER="firefox"
@@ -177,7 +177,7 @@ gui-main-menu()
         "4" "Inspect kmom (local)" \
         "" "---" \
         "d" "Download student me/" \
-        "w" "Open student me/redovisa in browser" \
+        "w" "Open student me/report in browser" \
         "p" "Potatoe student" \
         "" "---" \
         "a" "Admin menu" \
