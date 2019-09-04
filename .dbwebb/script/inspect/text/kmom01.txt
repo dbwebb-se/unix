@@ -1,7 +1,7 @@
-Jag hoppas installationen av VirtualBox gick bra och att du fått igång Guest Additions. Jag har även tittat på din logg-fil och den innehåller de delarna som är tänkt.
+I hope the installation of VirtualBox went well and that you have a good environment for the Linux operating system. I have looked at your assignment and all parts are handed in. The log-file contains correct information and the screenshot shows that you can access the server.
 
-Jag kollade igenom din redovisningstext och den är välskriven och reflekterande..
+I have also read your submitted text and it is well structured and reflecting. All is well this far. Continue with the next assignment.
 
-Allt är väl, så här långt. Kör på!
+Remember to use the Gitter channel for the course: https://gitter.im/dbwebb-se/unix.
 
 $TEACHER_SIGNATURE
