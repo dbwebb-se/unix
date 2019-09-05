@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-cd me/kmom02/vhost || exit 1
+cd me/kmom01/vhost || exit 1
 
 echo ""
 tput setaf 6
