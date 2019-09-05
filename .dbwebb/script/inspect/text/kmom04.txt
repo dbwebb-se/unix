@@ -1,1 +1,12 @@
-Jag testade både labben och de olika routesen och din inlämning är helt i sin ordning och fungerar fint.
+This was the final assignment! We created a larger Bash-script that works as a client for the maze-server.
+
+We used commands such as "curl" to retrieve information and structured the code in proper functions.
+
+I have looked at your solution and it solves the mazes in a good way.
+
+Congratulations on a course well taken!
+
+Soon you will be prompted to answer a short evaluation of the course. Please take a couple of minutes to answer it.
+It helps us to improve the course and the material for future occasions. You will soon find the evaluation in Canvas.
+
+$TEACHER_SIGNATURE

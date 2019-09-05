@@ -1,7 +1,9 @@
-Kursmoment 02 klart! Delarna innefattar en config-fil som styr din virtual host, en logg-fil samt en skärmdump.
+Nice work with assignment 2. There were a lot of Bash scripting here.
 
-Jag kune hitta alla delar och de har relevant innehåll.
+It seems like you have learned the fundamentals of creating scripts.
 
-Allt jag kollade på såg bra ut. Kör på.
+I have tested all your scripts and read your text. Good job, keep going with the next assignment.
+
+Remember to use the Gitter channel for the course: https://gitter.im/dbwebb-se/unix.
 
 $TEACHER_SIGNATURE
