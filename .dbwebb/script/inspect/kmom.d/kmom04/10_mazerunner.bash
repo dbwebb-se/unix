@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 function testMaze {
-    read -r -p "Execute mazerunner $2? [Y/n] " response
+    read -r -p "Execute mazerunner $*? [Y/n] " response
 
     if [ ! "$response" = "n" ]
     then
@@ -9,7 +9,7 @@ function testMaze {
         echo "#################"
         echo "Testing: $1"
         echo "#################"
-        shift
+        # shift
         echo ""
         bash mazerunner.bash "$@"
         echo ""
@@ -17,23 +17,23 @@ function testMaze {
     fi
 }
 echo "Starting server..."
-cd "me/kmom05/maze" && node index.js &
+cd "me/kmom04/maze" && node index.js &
 sleep 2
 
 # Test client.bash
-cd "me/kmom05/maze" || exit 1
+cd "me/kmom04/maze" || exit 1
 
-testMaze "Init" "init"
-testMaze "Maps" "maps"
-testMaze "Select" "select 1"
-testMaze "Enter" "enter"
-testMaze "Go EAST" "go east"
-testMaze "Go EAST" "go east"
-testMaze "Go SOUTH" "go south"
-testMaze "Go SOUTH" "go south"
-testMaze "Go SOUTH" "go south"
-testMaze "Go WEST" "go west"
-testMaze "Go WEST" "go west"
+testMaze "init"
+testMaze "maps"
+testMaze "select" "1"
+testMaze "enter"
+testMaze "go" "east"
+testMaze "go" "east"
+testMaze "go" "south"
+testMaze "go" "south"
+testMaze "go" "south"
+testMaze "go" "west"
+testMaze "go" "west"
 testMaze "LOOP" "loop"
 
 
