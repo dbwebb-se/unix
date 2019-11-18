@@ -1,7 +1,9 @@
-I hope the installation of VirtualBox went well and that you have a good environment for the Linux operating system. I have looked at your assignment and all parts are handed in. The log-file contains correct information and the screenshot shows that you can access the server.
+Jag hoppas allt gick bra med installationen av Debian i VirtualBox. Jag har tittat igenom din inlämning och alla delar finns på plats och fungerar som tänkt. Bra att du använder variabler i din configfil för Apache Virtuella Hostar.
 
-I have also read your submitted text and it is well structured and reflecting. All is well this far. Continue with the next assignment.
+Logg-filen innehåller rätt kommandon och skärmdumpen visar att du kan nå din server.
 
-Remember to use the Gitter channel for the course: https://gitter.im/dbwebb-se/unix.
+Jag har läst din text och den är väl skriven och reflektiv. Allt bra så här långt så bara kör vidare med nästa kursmoment.
+
+Kom ihåg att du kan använda Gitterkanalen för kursen, både för hjälp och för feedback https://gitter.im/dbwebb-se/unix.
 
 $TEACHER_SIGNATURE
