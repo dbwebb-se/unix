@@ -7,3 +7,5 @@ inspect.log
 inspect.output
 # Mac
 .DS_Store
+
+log-gui*

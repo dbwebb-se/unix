@@ -1,7 +1,7 @@
-So this assignment was about regular expressions. We use it when we want to search for patterns in textfiles.
+Detta kmom handlade om reguljära uttryck. Vi kan använda regex när vi söka efter mönster i textfiler.
 
-I have looked at your solutions in the lab. It solves the lab questions in a good way.
+Jag har tittat på dina lösningar i labben och allt fungerar som det är tänkt. Bra jobbat!
 
-Remember to use the Gitter channel for the course: https://gitter.im/dbwebb-se/unix.
+Kom ihåg att det alltid går att få svar och återkoppling i Gtter kanalen: https://gitter.im/dbwebb-se/unix.
 
 $TEACHER_SIGNATURE

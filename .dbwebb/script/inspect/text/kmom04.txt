@@ -1,12 +1,11 @@
-This was the final assignment! We created a larger Bash-script that works as a client for the maze-server.
+Detta var sista uppgiften! Vi gjorde ett lite större bash-skript, som är en klient för maze-servern.
 
-We used commands such as "curl" to retrieve information and structured the code in proper functions.
+Vi hämtade data från servern med hjälp av kommandon som "curl" och strukturerade koden med funktioner.
 
-I have looked at your solution and it solves the mazes in a good way.
+Jag har tittat på din lösning och den lösar mazen på ett utmärkt sätt.
 
-Congratulations on a course well taken!
+Bra jobbat med hela kursen.
 
-Soon you will be prompted to answer a short evaluation of the course. Please take a couple of minutes to answer it.
-It helps us to improve the course and the material for future occasions. You will soon find the evaluation in Canvas.
+Du kommer snart ta emot ett e-post om att fylla i kursvärdering för kursen. Kursvärderingen kan fyllas i direkt på kursplatsen i Canvas eller via direktlänken i e-postmeddelandet. Kursvärderingen är en viktig del av den feedback vi får i en kurs och vi är mycket tacksamma om du vill fylla i kursvärderingen.
 
 $TEACHER_SIGNATURE
