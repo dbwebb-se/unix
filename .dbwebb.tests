@@ -59,6 +59,10 @@ cd me/kmom03 && dbwebb recreate sed1
 cd me/kmom03/sed1 && ./answer.bash; [[ $? = 42 ]]
 dbwebb validate sed1
 
+cd me/kmom03/jq && ./answer.bash; [[ $? = 42 ]]
+dbwebb validate jq
+
+
 
 
 # --------------------------------------------------------------------------
