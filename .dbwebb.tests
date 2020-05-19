@@ -54,6 +54,11 @@ chmod 755 me/kmom02/commands/commands
 # Kmom03
 #
 
+# regex
+cd me/kmom03 && dbwebb recreate regex
+cd me/kmom03/regex && ./answer.bash; [[ $? = 42 ]]
+dbwebb validate regex
+
 # sed1
 cd me/kmom03 && dbwebb recreate sed1
 cd me/kmom03/sed1 && ./answer.bash; [[ $? = 42 ]]
