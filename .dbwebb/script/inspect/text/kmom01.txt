@@ -1,9 +1,9 @@
-Jag hoppas allt gick bra med installationen av Debian i VirtualBox. Jag har tittat igenom din inlämning och alla delar finns på plats och fungerar som tänkt. Bra att du använder variabler i din configfil för Apache Virtuella Hostar.
+I hope everything went well with the installation of Debian in VirtualBox. I have looked through your submission and all parts are in place and working as intended. Its good that you use variables in your Apache Virtual Host Config file, then if you would like to create more hosts, the procedure is very short.
 
-Logg-filen innehåller rätt kommandon och skärmdumpen visar att du kan nå din server.
+The log file contains the correct commands and the screenshot shows that you can reach your server.
 
-Jag har läst din text och den är väl skriven och reflektiv. Allt bra så här långt så bara kör vidare med nästa kursmoment.
+I have read your text and it is well written and reflective. All good so far so just keep going with the next assignment.
 
-Kom ihåg att du kan använda Gitterkanalen för kursen, både för hjälp och för feedback https://gitter.im/dbwebb-se/unix.
+Remember that you can use the Discord channel for both help and feedback https://discord.com/invite/9K9zPJ9.
 
 $TEACHER_SIGNATURE

@@ -3,7 +3,7 @@ cd me/kmom01/vhost || exit 1
 
 echo ""
 tput setaf 6
-echo "----- Check for dump.png and log.txt -----"
+echo "----- Check for dump.png, configfile and log.txt -----"
 tput sgr0
 ls
 
