@@ -1,13 +1,15 @@
 
 [0;30;42m>>> ======= Feedback                  =======[0m
 
-Bra jobbat med kursmoment 2. Här blev det en hel del Bash-skriptande.
+Detta var sista uppgiften! Vi gjorde ett lite större bash-skript, som är en klient för maze-servern.
 
-Det verkar som om du har lärt dig grunderna i hur man skapar skript i Bash.
+Vi hämtade data från servern med hjälp av kommandon som curl och strukturerade koden med funktioner.
 
-Jag har testat alla dina skript och läst din text. Bra kämpat, bara kör på med nästa moment.
+Jag har tittat på din lösning och den lösar mazen på ett utmärkt sätt.
 
-Kom ihåg att använda Gitterkanalen för kursen: https://gitter.im/dbwebb-se/unix.
+Bra jobbat med hela kursen.
+
+Du kommer snart ta emot ett e-post om att fylla i kursvärdering för kursen. Kursvärderingen kan fyllas i direkt på kursplatsen i Canvas eller via direktlänken i e-postmeddelandet. Kursvärderingen är en viktig del av den feedback vi får i en kurs och vi är mycket tacksamma om du vill fylla i kursvärderingen.
 
 // Kenneth (klw@bth.se)
 

@@ -1,46 +1,48 @@
 #!/usr/bin/env bash
+
+red=$(tput setaf 1)
+green=$(tput setaf 2)
+cyan=$(tput setaf 6)
+normal=$(tput sgr 0)
+
 cd me/kmom02/script || exit 1
 
 script="commands.bash"
 
-echo ""
-tput setaf 6
-echo "----- Testing script $script with argument cal -----"
-tput sgr0
+printf "%s\n${cyan}" "Testing script $script -h (should print helptext)"
+./"$script" "-h"
+printf "${normal}\n"
 
-./"$script" "cal" || exit 1
+printf "%s\n${cyan}" "Testing script $script --version (should print version)"
+./"$script" "--version"
+printf "${normal}\n"
 
-echo ""
-tput setaf 6
-echo "----- Testing script $script with argument greet -----"
-tput sgr0
+printf "%s\n${cyan}" "Testing script $script cal (should print a calendar)"
+./"$script" "cal"
+printf "${normal}\n"
 
-./"$script" "greet" || exit 1
+printf "%s\n${cyan}" "Testing script $script greet (should print a greeting to \$USER)"
+./"$script" "greet"
+printf "${normal}\n"
 
-echo ""
-tput setaf 6
-echo "----- Testing script $script with argument a -----"
-tput sgr0
+printf "%s\n${cyan}" "Testing script $script loop 24 31 (should print 24 - 31)"
+./"$script" "loop" "24" "31"
+printf "${normal}\n"
 
-./"$script a" || exit 1
+printf "%s\n${cyan}" "Testing script $script lower 43 31 4 24 56 (should print '31 4 24')"
+./"$script" "lower" "43" "31" "4" "24" "56"
+printf "${normal}\n"
 
-echo ""
-tput setaf 6
-echo "----- Testing script $script with arguments a test -----"
-tput sgr0
+printf "%s\n${cyan}" "Testing script $script reverse Bash is awesome! (should print '!emosewa si hsaB')"
+./"$script" "reverse" "Bash is awesome!"
+printf "${normal}\n"
 
-./"$script a test" || exit 1
+printf "%s\n${cyan}" "Testing script $script all (should print everything.)"
+./"$script" "all"
+printf "${normal}\n"
 
-tput setaf 6
-read -r -p "----- cat $script? [y/N] ----- " response
-tput sgr0
+read -r -p "View $script? [y/N] " response
 
-if [ "$response" = "y" ]
-then
-    cat "$script"
-
-    echo ""
-    tput setaf 6
-    read -p "----- Done? Press Enter... ----- "
-    tput sgr0
+if [[ "$response" = "y" ]]; then
+    cat $script
 fi

@@ -7,7 +7,7 @@ normal=$(tput sgr 0)
 
 cd me/kmom02/script || exit 1
 
-script="forloop.bash"
+script="my_function.bash"
 
 printf "%s\n${cyan}" "Testing script $script"
 ./"$script" || exit 1

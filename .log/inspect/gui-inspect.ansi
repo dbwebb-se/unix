@@ -1,8 +1,8 @@
 [32;01m--->   Run container= with what= one off command.[0m
-[ ! -f docker-compose.yaml ] || docker-compose -f docker-compose.yaml run  cli make inspect what=kmom02 options='--yes'
+[ ! -f docker-compose.yaml ] || docker-compose -f docker-compose.yaml run  cli make inspect what=kmom04 options='--yes'
 Creating unix_cli_run ... 
 [1A[2KCreating unix_cli_run ... [32mdone[0m[1B[32;01m--->   Execute dbwebb inspect what=kmom01.[0m
-env PATH='/home/dbwebb/repo/bin:/home/dbwebb/repo/vendor/bin:/home/dbwebb/repo/node_modules/.bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin' bin/dbwebb-inspect --yes . kmom02
+env PATH='/home/dbwebb/repo/bin:/home/dbwebb/repo/vendor/bin:/home/dbwebb/repo/node_modules/.bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin' bin/dbwebb-inspect --yes . kmom04
 env: 'bin/dbwebb-inspect': No such file or directory
 make: *** [Makefile:316: dbwebb-inspect] Error 127
 make: *** [Makefile:384: docker-run] Error 2

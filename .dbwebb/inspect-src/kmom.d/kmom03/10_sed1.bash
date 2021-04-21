@@ -1,8 +1,7 @@
 #!/usr/bin/env bash
 cd me/kmom03/sed1 || exit 1
 
-./answer.bash
+./answer.bash || exit 1
 
-tput setaf 6
-read -p "Done viewing the lab?"
-tput sgr0
+echo ""
+read -p "Done viewing the lab? "

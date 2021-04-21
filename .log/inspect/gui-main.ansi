@@ -1,51 +1,150 @@
 
 [0;30;42m>>> ======= GUI Inspect               =======[0m
-tis 20 apr 2021 14:24:58 CEST
-unix kmom02 faah15
+ons 21 apr 2021 09:40:47 CEST
+unix kmom04 fibe16
 download, docker
 Inspect GUI v2.5.1 (2020-11-30)
 
 [0;30;42m>>> ======= Download (and potato)     =======[0m
 Doing a silent download, potatoe if needed.
 
-[0;30;42m>>> ======= Pre kmom02                =======[0m
+[0;30;42m>>> ======= Pre kmom04                =======[0m
 
 [0;30;42m>>> ======= dbwebb inspect            =======[0m
 Do dbwebb inspect in the background and write output to logfile.
 
 [0;30;42m>>> ======= Docker run scripts        =======[0m
-docker-compose -f docker-compose.yaml run --service-ports server bash .dbwebb/inspect-src/kmom.d/run.bash kmom02 faah15 .log/inspect/docker.txt
+docker-compose -f docker-compose.yaml run --service-ports server bash .dbwebb/inspect-src/kmom.d/run.bash kmom04 fibe16 .log/inspect/docker.txt
 Creating unix_server_run ... 
 [1A[2KCreating unix_server_run ... [32mdone[0m[1B
 [32;01m>>> -------------- Start                -------------------------[0m
-Running scripts in '/home/dbwebb/repo/.dbwebb/inspect-src/kmom.d/kmom02'.
+Running scripts in '/home/dbwebb/repo/.dbwebb/inspect-src/kmom.d/kmom04'.
 
-[32;01m>>> -------------- 10_script-files.bash -------------------------[0m
-[faah15] Check for 7 scripts.
-Press any key to view content of folder script/. 
-total 40
-drwxr-xr-x 2 dbwebb dbwebb 4096 Sep 30  2020 .
-drwxr-xr-x 5 dbwebb dbwebb 4096 Sep 18  2020 ..
--rwxrwxr-x 1 dbwebb dbwebb   22 Sep 27  2020 argument.bash
--rwxrwxr-x 1 dbwebb dbwebb  289 Sep 27  2020 argument_2.bash
--rwxr-xr-x 1 dbwebb dbwebb 3176 Sep 29  2020 commands.bash
--rwxrwxr-x 1 dbwebb dbwebb   49 Sep 27  2020 forloop.bash
--rwxrwxr-x 1 dbwebb dbwebb   34 Sep 27  2020 hello.bash
--rwxrwxr-x 1 dbwebb dbwebb  115 Sep 27  2020 if_1.bash
--rwxrwxr-x 1 dbwebb dbwebb  126 Sep 30  2020 if_2.bash
--rwxrwxr-x 1 dbwebb dbwebb   63 Sep 27  2020 myfunction.bash
-Press any key to view content of hello.bash 
-Press any key to view: hello.bash 
+[32;01m>>> -------------- 10_mazerunner.bash   -------------------------[0m
+Starting server...
+The maze server is now listening on: 1337
+Execute mazerunner init? [Y/n] 
 
-[36m#!/bin/bash
+[36mTesting init(B[0m
+Option/command not recognized.
+To get start with the script , execute:
+mazerunner.bash loop
+Execute mazerunner maps? [Y/n] 
 
-echo "Hello World\n"
-(B[0m
-Press any key to view content of argument.bash 
-Press any key to view: argument.bash 
+[36mTesting maps(B[0m
+Option/command not recognized.
+To get start with the script , execute:
+mazerunner.bash loop
 
-[36m#!/bin/bash 
 
-echo $@
-(B[0m
-Press any key to view content of if_1.bash ^C
+Execute mazerunner select 1? [Y/n] 
+[36mTesting select 1(B[0m
+Option/command not recognized.
+To get start with the script , execute:
+mazerunner.bash loop
+
+Execute mazerunner enter? [Y/n] 
+[36mTesting enter(B[0m
+Option/command not recognized.
+To get start with the script , execute:
+mazerunner.bash loop
+
+Execute mazerunner go east? [Y/n] 
+[36mTesting go east(B[0m
+Option/command not recognized.
+To get start with the script , execute:
+mazerunner.bash loop
+
+Execute mazerunner go east? [Y/n] 
+[36mTesting go east(B[0m
+Option/command not recognized.
+To get start with the script , execute:
+mazerunner.bash loop
+
+Execute mazerunner go south? [Y/n] 
+[36mTesting go south(B[0m
+Option/command not recognized.
+To get start with the script , execute:
+mazerunner.bash loop
+
+Execute mazerunner go south? [Y/n] 
+[36mTesting go south(B[0m
+Option/command not recognized.
+To get start with the script , execute:
+mazerunner.bash loop
+Execute mazerunner go south? [Y/n] 
+[36mTesting go south(B[0m
+Option/command not recognized.
+To get start with the script , execute:
+mazerunner.bash loop
+
+Execute mazerunner go west? [Y/n] 
+[36mTesting go west(B[0m
+Option/command not recognized.
+To get start with the script , execute:
+mazerunner.bash loop
+Execute mazerunner go west? [Y/n] 
+
+[36mTesting go west(B[0m
+Option/command not recognized.
+To get start with the script , execute:
+mazerunner.bash loop
+Execute mazerunner loop? [Y/n] 
+
+[36mTesting loop(B[0m
+ ** MAZERUNNER ** 
+Incoming route / from ip ::ffff:127.0.0.1
+Created new game with id 46450
+
+New game initialized. 
+
+Incoming route /map from ip ::ffff:127.0.0.1
+[ [32m'maze-of-doom.json'[39m, [32m'small-maze.json'[39m ]
+
+Setting up the maps ... 
+1. maze-of-doom.json 
+2. small-maze.json 
+
+Use mazerunner select # to choose map 
+2
+You selected small-maze
+Incoming route /46450/map/small-maze from ip ::ffff:127.0.0.1
+New map selected.
+Incoming route /46450/maze from ip ::ffff:127.0.0.1
+
+You entre the maze 
+
+You are in room: 0
+Description: Entry
+You can go to
+South, room 1
+
+
+Enter command:(help, for help; done to be exit)
+south
+Incoming route /46450/maze/0/south from ip ::ffff:127.0.0.1
+You are in room: 1
+Description: Room 1
+You can go to
+South, room 2
+
+
+Enter command:(help, for help; done to be exit)
+south
+Incoming route /46450/maze/1/south from ip ::ffff:127.0.0.1
+You are in room: 2
+Description: You found the exit
+You can go to
+
+Congratulation!! you found the exit 
+Thank you for playing MAZERUNNER
+Do you to view mazerunner.bash? [Y/n] n
+
+Killing the server...
+kill: usage: kill [-s sigspec | -n signum | -sigspec] pid | jobspec ... or kill -l [sigspec]
+Server dead :)
+[0;30;42mOK[0m 10_mazerunner.bash
+
+[32;01m>>> -------------- 99_bashprompt-docker.bash -------------------------[0m
+[36m----- Do you want to start a bashprompt in Docker? [y/N] ----- ^C
+[0;30;42m>>> ======= Post kmom04               =======[0m
