@@ -1,7 +1,25 @@
 version: "3"
+
+volumes:
+    mysql_data: {}
+    mariadb_data: {}
+
 services:
-    course-cli:
-        image: dbwebb/courserepo:course-cli
+    # Primary services to use with this course
+    unix: &unix
+        image: dbwebb/courserepo
         volumes:
-            - .:/home/dbwebb/repo
-        ports: [ "10042:80" ]
+            - ".:/home/dbwebb/repo"
+            - "/home/dbwebb/repo/bin"
+            - "/home/dbwebb/repo/build"
+            - "/home/dbwebb/repo/node_modules"
+            #- "/home/dbwebb/repo/vendor"
+            - "./example/sql/inspect/my.cnf:/home/dbwebb/.my.cnf"
+
+    cli:
+        <<: *unix
+
+    server:
+        <<: *unix
+        ports:
+            - "1337:1337"

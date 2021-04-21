@@ -1,0 +1,51 @@
+
+[0;30;42m>>> ======= GUI Inspect               =======[0m
+tis 20 apr 2021 14:24:58 CEST
+unix kmom02 faah15
+download, docker
+Inspect GUI v2.5.1 (2020-11-30)
+
+[0;30;42m>>> ======= Download (and potato)     =======[0m
+Doing a silent download, potatoe if needed.
+
+[0;30;42m>>> ======= Pre kmom02                =======[0m
+
+[0;30;42m>>> ======= dbwebb inspect            =======[0m
+Do dbwebb inspect in the background and write output to logfile.
+
+[0;30;42m>>> ======= Docker run scripts        =======[0m
+docker-compose -f docker-compose.yaml run --service-ports server bash .dbwebb/inspect-src/kmom.d/run.bash kmom02 faah15 .log/inspect/docker.txt
+Creating unix_server_run ... 
+[1A[2KCreating unix_server_run ... [32mdone[0m[1B
+[32;01m>>> -------------- Start                -------------------------[0m
+Running scripts in '/home/dbwebb/repo/.dbwebb/inspect-src/kmom.d/kmom02'.
+
+[32;01m>>> -------------- 10_script-files.bash -------------------------[0m
+[faah15] Check for 7 scripts.
+Press any key to view content of folder script/. 
+total 40
+drwxr-xr-x 2 dbwebb dbwebb 4096 Sep 30  2020 .
+drwxr-xr-x 5 dbwebb dbwebb 4096 Sep 18  2020 ..
+-rwxrwxr-x 1 dbwebb dbwebb   22 Sep 27  2020 argument.bash
+-rwxrwxr-x 1 dbwebb dbwebb  289 Sep 27  2020 argument_2.bash
+-rwxr-xr-x 1 dbwebb dbwebb 3176 Sep 29  2020 commands.bash
+-rwxrwxr-x 1 dbwebb dbwebb   49 Sep 27  2020 forloop.bash
+-rwxrwxr-x 1 dbwebb dbwebb   34 Sep 27  2020 hello.bash
+-rwxrwxr-x 1 dbwebb dbwebb  115 Sep 27  2020 if_1.bash
+-rwxrwxr-x 1 dbwebb dbwebb  126 Sep 30  2020 if_2.bash
+-rwxrwxr-x 1 dbwebb dbwebb   63 Sep 27  2020 myfunction.bash
+Press any key to view content of hello.bash 
+Press any key to view: hello.bash 
+
+[36m#!/bin/bash
+
+echo "Hello World\n"
+(B[0m
+Press any key to view content of argument.bash 
+Press any key to view: argument.bash 
+
+[36m#!/bin/bash 
+
+echo $@
+(B[0m
+Press any key to view content of if_1.bash ^C
