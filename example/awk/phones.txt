@@ -1,0 +1,6 @@
+Brand,Model,Price,Units
+Apple,iPhone X,8000,3
+Apple,iPhone 11,10000,14
+Samsung,Galaxy S20,9500,8
+Samsung,Galaxy S21+,11500,13
+Samsung,Galaxy Note20,8000,4
