@@ -36,8 +36,8 @@ function usage
 "  --help, -h     Print help."
 "  --version, -h  Print version."
     )
-    
-    printf "%s\n" "${txt[@]}"
+
+    printf "%s\\n" "${txt[@]}"
 }
 
 
@@ -52,10 +52,10 @@ function badUsage
 "For an overview of the command, execute:"
 "$SCRIPT --help"
     )
-    
-    [[ $message ]] && printf "$message\n"
 
-    printf "%s\n" "${txt[@]}"
+    [[ $message ]] && printf "%s\\n" "$message"
+
+    printf "%s\\n" "${txt[@]}"
 }
 
 
@@ -69,7 +69,7 @@ function version
 "$SCRIPT version $VERSION"
     )
 
-    printf "%s\n" "${txt[@]}"
+    printf "%s\\n" "${txt[@]}"
 }
 
 
@@ -106,10 +106,10 @@ function app-command2
 function app-calendar
 {
     local events="$1"
-    
+
     echo "This is output from command3, showing the current calender."
     cal -3
-    
+
     if [ "$events" = "events" ]; then
         echo
         calendar
@@ -140,15 +140,15 @@ do
         | calendar)
             command=$1
             shift
-            app-$command $*
+            app-"$command" "$@"
             exit 0
         ;;
-        
+
         *)
             badUsage "Option/command not recognized."
             exit 1
         ;;
-        
+
     esac
 done
 
