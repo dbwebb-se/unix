@@ -5,7 +5,7 @@ green=$(tput setaf 2)
 cyan=$(tput setaf 6)
 normal=$(tput sgr 0)
 
-cd me/kmom06/awk || exit 1
+cd me/kmom03/awk || exit 1
 cp ../../../example/awk/awk_names.csv .
 
 echo "[$ACRONYM] Check for awkfiles"
